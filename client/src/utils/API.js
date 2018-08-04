@@ -1,8 +1,17 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
-  getMovies: function() {
-    return axios.get("/api/movies");
+  // Gets all movies
+  getMovies: function () {
+    return axios.get("/api/Movies");
+  },
+  // Deletes the movie with the given id
+  deleteMovie: function (id) {
+    return axios.delete("/api/Movies/" + id);
+  },
+  // Saves a movie to the database
+  saveMovie: function (movieData) {
+    return axios.post("/api/Movies", movieData);
   }
 };
+

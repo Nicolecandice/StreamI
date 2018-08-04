@@ -1,0 +1,10 @@
+.jumbotron {
+    margin-bottom: 0px;
+    background-image: url("https://images.search.yahoo.com/yhs/search;_ylt=A0geK92qIl5bE1oAxfUPxQt.;_ylu=X3oDMTByMjB0aG5zBGNvbG8DYmYxBHBvcwMxBHZ0aWQDBHNlYwNzYw--?p=movie+background&fr=yhs-iba-1&hspart=iba&hsimp=yhs-1#id=21&iurl=https%3A%2F%2Fwww.intrawallpaper.com%2Fstatic%2Fimages%2Fmaxresdefault_jKFJl8g.jpg&action=click");
+    background-position: 0% 25%;
+    background-size: cover;
+    background-color:white;
+    background-repeat: no-repeat;
+    color:white;
+    text-shadow: white 0.3em 0.3em 0.3em;
+}

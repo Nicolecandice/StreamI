@@ -10,6 +10,7 @@ class List extends React.Component {
       <div className="list-overflow-container">
         <ul className="list-group">
           {this.props.children}
+          
         </ul>
       </div>
     );

@@ -6,10 +6,10 @@ class FormBtn extends React.Component {
   render () {
 
     // Destructuring the type, className, children and onClick props, applying them to the button element
-    const { children, disabled } = this.props
+    const { children, onClick } = this.props
 
     return (
-      <button disabled={disabled} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">
+      <button onClick={onClick} isabled={true} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">
         {children}
       </button>
     );
@@ -19,6 +19,7 @@ class FormBtn extends React.Component {
 FormBtn.props = {
   children: PropTypes.node,
   disabled: PropTypes.bool,
+  onClick: PropTypes.func
 }
 
 export default FormBtn
