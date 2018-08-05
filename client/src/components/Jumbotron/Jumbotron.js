@@ -8,7 +8,7 @@ class Jumbotron extends React.Component {
   render () {
 
     return (
-      <div style={{ height: 300, clear: 'both' }} className="jumbotron">
+      <div style={{ height: 700, clear: 'both' }} className="jumbotron">
         {this.props.children}
       </div>
       );

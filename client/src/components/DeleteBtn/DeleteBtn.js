@@ -7,7 +7,7 @@ class DeleteBtn extends React.Component {
   render () {
     return (
       <span className="delete-btn" onClick={this.props.onClick}>
-        ✗
+      <i class="glyphicon glyphicon-remove-circle"></i>
       </span>
     );
   }

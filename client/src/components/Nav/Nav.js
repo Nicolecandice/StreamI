@@ -11,7 +11,7 @@ const Nav = () =>
           <span className="icon-bar" />
         </button>
         <a href="/" className="navbar-brand">
-          StreamI
+          Login
         </a>
       </div>
     </div>

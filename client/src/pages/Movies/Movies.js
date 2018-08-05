@@ -2,6 +2,7 @@ import React from "react";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import DeleteBtn from "../../components/DeleteBtn";
+import UpdateBtn from "../../components/UpdateBtn";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
@@ -36,6 +37,12 @@ class Movies extends React.Component {
         .then(res => this.loadMovies())
         .catch(err => console.log(err));
     };
+    updateMovie = id => {
+      API.updateMovie(id)
+        .then(res => this.loadMovies())
+        .catch(err => console.log(err));
+    };
+  
   
     // Handles updating component state when the user types into the input field
     handleInputChange = event => {
@@ -74,10 +81,15 @@ class Movies extends React.Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6">
+          <Col size="md-12">
             <Jumbotron>
-              <h1>What Movies Should I Watch?</h1>
+              <h1>STREAMi</h1>
             </Jumbotron>
+            </Col>
+            <Col size="md-6 sm-12">
+            <header>
+            <h1>What Movies Should I Watch?</h1>
+          </header>
             <form>
               <Input
                 value={this.state.title}
@@ -106,9 +118,9 @@ class Movies extends React.Component {
             </form>
           </Col>
           <Col size="md-6 sm-12">
-            <Jumbotron>
+            <header>
               <h1>Movies On My List</h1>
-            </Jumbotron>
+            </header>
             {this.state.movies.length ? (
               <List>
                 {this.state.movies.map(movie => {
@@ -127,6 +139,12 @@ class Movies extends React.Component {
             ) : (
               <h3>No Results to Display</h3>
             )}
+            <UpdateBtn
+              disabled={!(this.state.director && this.state.title)}
+                onClick={this.handleUpdateBtn}
+              >
+                Update Movie
+              </UpdateBtn>
           </Col>
         </Row>
       </Container>
