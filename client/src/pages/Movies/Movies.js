@@ -2,10 +2,11 @@ import React from "react";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import DeleteBtn from "../../components/DeleteBtn";
-import UpdateBtn from "../../components/UpdateBtn";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
+/* global $ */
+// this catches the jquery
 
 class Movies extends React.Component {
     constructor(props) {
@@ -36,6 +37,10 @@ class Movies extends React.Component {
       API.deleteMovie(id)
         .then(res => this.loadMovies())
         .catch(err => console.log(err));
+    };
+    editMovie = event => {
+      console.log(event)
+      $("#movieModal").modal("show");
     };
     updateMovie = id => {
       API.updateMovie(id)
@@ -80,6 +85,7 @@ class Movies extends React.Component {
   render() {
     return (
       <Container fluid>
+      <MovieModal/>
         <Row>
           <Col size="md-12">
             <Jumbotron>
@@ -131,6 +137,15 @@ class Movies extends React.Component {
                           {movie.title} by {movie.director}
                         </strong>
                       </a>
+                      <i className="glyphicon glyphicon-pencil" onClick={this.editMovie} data-title={movie.title}
+                      data-director={movie.director}
+                      data-synopsis={movie.synopsis}
+                      data-id={movie._id}
+                      data-toggle="modal"
+                      data-target="#movieModal">
+                    
+                    </i>
+                      
                       <DeleteBtn onClick={() => this.deleteMovie(movie._id)} />
                     </ListItem>
                   );
@@ -139,18 +154,47 @@ class Movies extends React.Component {
             ) : (
               <h3>No Results to Display</h3>
             )}
-            <UpdateBtn
-              disabled={!(this.state.director && this.state.title)}
-                onClick={this.handleUpdateBtn}
-              >
-                Update Movie
-              </UpdateBtn>
           </Col>
         </Row>
       </Container>
-    );
+    ); 
+
   }
 }
+class MovieModal extends React.Component {
+  saveChanges=() =>{
+    // build an object of the modal: title, director , Synopsis
+//make sure to get the id of the movie target.
+  }
+  render(){
+    return(
+<div className="modal" tabIndex="-1"id="movieModal" role="dialog">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title">Movie</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div className="modal-body">
+        <input>
+         </input>
+         <input>
+         </input>
+      </div>
+      <div className="modal-footer">
+        <button type="button"onClick={this.saveChanges} className="btn btn-primary">Save changes</button>
+        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    )
+}
+}
+
+
 
 export default Movies;
  

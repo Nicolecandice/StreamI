@@ -14,7 +14,7 @@ export default {
     return axios.post("/api/Movies", movieData);
   },
   updateMovie: function (movieData) {
-    return axios.put("/api/Movies", movieData);
+    return axios.put(`/api/Movies/${movieData._id}}`, movieData);
   }
 };
 

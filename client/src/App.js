@@ -2,15 +2,15 @@ import React from "react";
 // import ImageBackground from "./ImageBackground";
 import Movies from "./pages/Movies";
 import Nav from "./components/Nav";
-// import Profile from "./components/Profile";
-
-// import Home from "./Home";
+// import Login from"./components/Login";
 
 const App = () => (
   <div>
    <Nav />
    <Movies /> 
   </div>
+  
+
 );
 
 export default(App);
