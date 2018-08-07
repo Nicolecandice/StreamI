@@ -161,11 +161,14 @@ class Movies extends React.Component {
 
   }
 }
-class MovieModal extends React.Component {
-  saveChanges=() =>{
+ class MovieModal extends React.Component {
+  saveChanges=() => {
+const {Director,Synopsis, _id } = Movies;
+  }
+
     // build an object of the modal: title, director , Synopsis
 //make sure to get the id of the movie target.
-  }
+  
   render(){
     return(
 <div className="modal" tabIndex="-1"id="movieModal" role="dialog">
