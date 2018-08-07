@@ -13,8 +13,11 @@ export default {
   saveMovie: function (movieData) {
     return axios.post("/api/Movies", movieData);
   },
-  updateMovie: function (movieData) {
-    return axios.put(`/api/Movies/${movieData._id}}`, movieData);
-  }
+  getMovie: function (id) {
+    return axios.get("/api/Movies/" + id);
+  },
+  patchMovie: function (id, movieData) {
+    return axios.patch("/api/Movies/" + id, movieData);
+  },
 };
 

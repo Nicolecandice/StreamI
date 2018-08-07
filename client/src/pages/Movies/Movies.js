@@ -9,70 +9,70 @@ import { Input, TextArea, FormBtn } from "../../components/Form";
 // this catches the jquery
 
 class Movies extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        movies: [],
-        title: "",
-        director: "",
-        synopsis: ""
-      };
-    }
-  
-    // When the component mounts, load all books and save them to this.state.books
-    componentDidMount() {
-      this.loadMovies();
-    }
-  
-    // Loads all books  and sets them to this.state.books
-    loadMovies = () => {
-       API.getMovies()
+  constructor(props) {
+    super(props);
+    this.state = {
+      movies: [],
+      title: "",
+      director: "",
+      synopsis: ""
+    };
+  }
+
+  // When the component mounts, load all books and save them to this.state.books
+  componentDidMount() {
+    this.loadMovies();
+  }
+
+  // Loads all books  and sets them to this.state.books
+  loadMovies = () => {
+    API.getMovies()
       //   .then(res => this.setState({ movies: res.data, title: "", director: "", synopsis: "" }))
-        .then(res => this.setState({ movies: res.data}))
-        .catch(err => console.log(err));
-    };
-  
-    // Deletes a book from the database with a given id, then reloads books from the db
-    deleteMovie = id => {
-      API.deleteMovie(id)
+      .then(res => this.setState({ movies: res.data }))
+      .catch(err => console.log(err));
+  };
+
+  // Deletes a book from the database with a given id, then reloads books from the db
+  deleteMovie = id => {
+    API.deleteMovie(id)
+      .then(res => this.loadMovies())
+      .catch(err => console.log(err));
+  };
+  editMovie = event => {
+    console.log(event)
+    $("#movieModal").modal("show");
+  };
+  updateMovie = id => {
+    API.updateMovie(id)
+      .then(res => this.loadMovies())
+      .catch(err => console.log(err));
+  };
+
+
+  // Handles updating component state when the user types into the input field
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  // When the form is submitted, use the API.saveBook method to save the book data
+  // Then reload books from the database
+  handleFormSubmit = event => {
+    event.preventDefault();
+    if (this.state.title && this.state.director) {
+      API.saveMovie({
+        title: this.state.title,
+        director: this.state.director,
+        synopsis: this.state.synopsis
+      })
         .then(res => this.loadMovies())
         .catch(err => console.log(err));
-    };
-    editMovie = event => {
-      console.log(event)
-      $("#movieModal").modal("show");
-    };
-    updateMovie = id => {
-      API.updateMovie(id)
-        .then(res => this.loadMovies())
-        .catch(err => console.log(err));
-    };
-  
-  
-    // Handles updating component state when the user types into the input field
-    handleInputChange = event => {
-      const { name, value } = event.target;
-      this.setState({
-        [name]: value
-      });
-    };
-  
-    // When the form is submitted, use the API.saveBook method to save the book data
-    // Then reload books from the database
-    handleFormSubmit = event => {
-      event.preventDefault();
-      if (this.state.title && this.state.director) {
-        API.saveMovie({
-          title: this.state.title,
-          director: this.state.director,
-          synopsis: this.state.synopsis
-        })
-          .then(res => this.loadMovies())
-          .catch(err => console.log(err));
-      }
-    };
-  
-  
+    }
+  };
+
+
 
   // Add state to your component(example:10. Book.js)
   // Add the handleInputChange function
@@ -85,17 +85,16 @@ class Movies extends React.Component {
   render() {
     return (
       <Container fluid>
-      <MovieModal/>
         <Row>
           <Col size="md-12">
             <Jumbotron>
               <h1>STREAMi</h1>
             </Jumbotron>
-            </Col>
-            <Col size="md-6 sm-12">
+          </Col>
+          <Col size="md-6 sm-12">
             <header>
-            <h1>What Movies Should I Watch?</h1>
-          </header>
+              <h1>What Movies Should I Watch?</h1>
+            </header>
             <form>
               <Input
                 value={this.state.title}
@@ -116,7 +115,7 @@ class Movies extends React.Component {
                 placeholder="Synopsis (Optional)"
               />
               <FormBtn
-              disabled={!(this.state.director && this.state.title)}
+                disabled={!(this.state.director && this.state.title)}
                 onClick={this.handleFormSubmit}
               >
                 Submit Movie
@@ -137,67 +136,20 @@ class Movies extends React.Component {
                           {movie.title} by {movie.director}
                         </strong>
                       </a>
-                      <i className="glyphicon glyphicon-pencil" onClick={this.editMovie} data-title={movie.title}
-                      data-director={movie.director}
-                      data-synopsis={movie.synopsis}
-                      data-id={movie._id}
-                      data-toggle="modal"
-                      data-target="#movieModal">
-                    
-                    </i>
-                      
                       <DeleteBtn onClick={() => this.deleteMovie(movie._id)} />
                     </ListItem>
                   );
                 })}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
-            )}
+                <h3>No Results to Display</h3>
+              )}
           </Col>
         </Row>
       </Container>
-    ); 
+    );
 
   }
 }
- class MovieModal extends React.Component {
-  saveChanges=() => {
-const {Director,Synopsis, _id } = Movies;
-  }
-
-    // build an object of the modal: title, director , Synopsis
-//make sure to get the id of the movie target.
-  
-  render(){
-    return(
-<div className="modal" tabIndex="-1"id="movieModal" role="dialog">
-  <div className="modal-dialog" role="document">
-    <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title">Movie</h5>
-        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div className="modal-body">
-        <input>
-         </input>
-         <input>
-         </input>
-      </div>
-      <div className="modal-footer">
-        <button type="button"onClick={this.saveChanges} className="btn btn-primary">Save changes</button>
-        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-    )
-}
-}
-
-
 
 export default Movies;
- 

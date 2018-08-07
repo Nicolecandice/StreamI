@@ -37,9 +37,16 @@ const movieFunctions = {
   }
 }
 router.get("/api/movies", movieFunctions.findAll)
+
 router.post("/api/movies", movieFunctions.create)
+
 router.delete("/api/movies/:id", movieFunctions.remove)
-router.put("/api/movies/:id", movieFunctions.update)
+
+router.get("/api/movies/:id", movieFunctions.findById)
+
+router.patch("/api/movies/:id", movieFunctions.update)
+
+// router.put("/api/movies/:id", movieFunctions.update)
 
 // If no API routes are hit, send the React app
 router.use(function (req, res) {
