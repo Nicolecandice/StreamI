@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": "8.11.1"
+  },
   "scripts": {
     "debug": "concurrently \"node --inspect-brk=43240 server.js\" \"npm run client\"",
     "start": "if-env NODE_ENV=production && npm run server || npm run start:dev",
