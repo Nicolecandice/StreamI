@@ -38,15 +38,15 @@ class Movies extends React.Component {
       .then(res => this.loadMovies())
       .catch(err => console.log(err));
   };
-  // editMovie = event => {
-  //   console.log(event)
-  //   $("#movieModal").modal("show");
-  // };
-  // updateMovie = id => {
-  //   API.updateMovie(id)
-  //     .then(res => this.loadMovies())
-  //     .catch(err => console.log(err));
-  // };
+  editMovie = event => {
+    console.log(event)
+    $("#movieModal").modal("show");
+  };
+  updateMovie = id => {
+    API.updateMovie(id)
+      .then(res => this.loadMovies())
+      .catch(err => console.log(err));
+  };
 
 
   // Handles updating component state when the user types into the input field
@@ -72,15 +72,6 @@ class Movies extends React.Component {
     }
   };
 
-
-
-  // Add state to your component(example:10. Book.js)
-  // Add the handleInputChange function
-  // Have your handleFormSubmit call the API file for your createMovie function
-  // Add the properties value and onChange to your Inputs and TextArea JSX
-  // 1st Input value should be this.state.title
-  // 2nd Input value should be this.state.author
-  // TextArea value should be this.state.synopsis
   // All onChange values should be this.handleInputChange
   render() {
     return (
