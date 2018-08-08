@@ -38,15 +38,15 @@ class Movies extends React.Component {
       .then(res => this.loadMovies())
       .catch(err => console.log(err));
   };
-  editMovie = event => {
-    console.log(event)
-    $("#movieModal").modal("show");
-  };
-  updateMovie = id => {
-    API.updateMovie(id)
-      .then(res => this.loadMovies())
-      .catch(err => console.log(err));
-  };
+  // editMovie = event => {
+  //   console.log(event)
+  //   $("#movieModal").modal("show");
+  // };
+  // updateMovie = id => {
+  //   API.updateMovie(id)
+  //     .then(res => this.loadMovies())
+  //     .catch(err => console.log(err));
+  // };
 
 
   // Handles updating component state when the user types into the input field
