@@ -41,8 +41,8 @@ class Detail extends React.Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.movie.title && this.state.movie.director) {
-      API.patchMovie(this.props.match.params.id, this.state.movie
-        .then(res => this.setState({isUpdate:false})))
+      API.patchMovie(this.props.match.params.id, this.state.movie)
+        .then(res => this.setState({isUpdate:false}))
         .catch(err => console.log(err));
     }
   };
